@@ -5,7 +5,12 @@ const useStore = defineStore('store', {
         auth: {
             user: null,
         },
-        playlist: localStorage.getItem('playlist') || { currentTrack: null, tracks: [] }
+        playlist: JSON.parse(localStorage.getItem('playlist')) || { currentTrack: null, tracks: [] },
+        shuffle: true,
+        repeat: {
+            on: true,
+            mode: 1
+        }
     }),
 
 })

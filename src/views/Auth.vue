@@ -1,7 +1,7 @@
 <template>
     <main class="main" ref="main">
 
-        <form v-if="showLogin">
+        <form v-if="showLogin" method="post">
             <h2>Login to your account</h2>
             <div>
                 <label for="username">Username</label>
@@ -11,10 +11,10 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" placeholder="Password">
             </div>
-            <button>Login</button>
+            <button class="btn">Login</button>
             <p><span>Don't have an account?</span><a href="#" @click="showLogin = false">Register</a></p>
         </form>
-        <form v-else>
+        <form method="post" v-else>
             <h2>Register</h2>
             <p><span>Already have an account? </span><a href="#" @click="showLogin = true">Login</a></p>
         </form>
@@ -76,8 +76,22 @@ form {
     }
 
     label {
-        color: #444;
+        color: #fff;
         font-size: 1.4rem;
+    }
+
+    a {
+        text-decoration: none;
+        cursor: pointer;
+        
+        &:link, &:visited {
+            color: #fff;
+        }
+
+        &:hover, &:active {
+            color: #2563eb;
+        }
+
     }
 
     input {
@@ -86,6 +100,9 @@ form {
         background: transparent;
         border: none;
         border-bottom: 1px solid #fff;
+        background-color: #ffffff91;
+        padding: 1rem 1.5rem;
+        border-radius: .25rem;
 
         &:focus {
             outline: none;
@@ -94,6 +111,18 @@ form {
         &::placeholder {
             color: #fff;
         }
+    }
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border: 1px solid gray;
+    border-radius: .25rem;
+    background-color: #fcd34d;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #fbbf24;
     }
 }
 
