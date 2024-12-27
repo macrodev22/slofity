@@ -1,7 +1,7 @@
 <template>
     <main class="main" ref="main">
 
-        <form v-if="showLogin" method="post">
+        <form v-if="showLogin" method="post" @submit.prevent="loginUser">
             <h2>Login to your account</h2>
             <div>
                 <label for="username">Username</label>
@@ -32,6 +32,7 @@
 </template>
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import client from '../services/apiClient'
 
 const main = ref(null)
 const backgrounds = ['bg_img.jpeg', 'bg_lake.webp', 'people_chill.avif']
@@ -48,6 +49,12 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => clearInterval(intervalId))
+
+const loginUser = (e) => {
+    const formData = new FormData(e.target)
+    console.log(formData)
+}
+
 </script>
 <style lang="scss" scoped>
 .main {
@@ -116,9 +123,14 @@ form {
 
 .btn {
     padding: 1rem 2rem;
-    border: 1px solid gray;
-    border-radius: .25rem;
-    background-color: #fcd34d;
+    border: 2px solid #fff;
+    border-radius: 10rem;
+    background-color: transparent;
+    width: 100%;
+    color: #fff;
+    font-size: 1.3em;
+    margin-bottom: 2rem;
+
     cursor: pointer;
 
     &:hover {
@@ -135,5 +147,8 @@ form {
     flex-direction: column;
     justify-content: center;
     color: #fff;
+    h1 {
+        color: #3ad93d;
+    }
 }
 </style>
